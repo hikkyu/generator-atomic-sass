@@ -32,11 +32,13 @@ describe('Atomic SASS', function() {
         });
     });
 
-    descibe(':app', function() {
+    describe(':app', function() {
         beforeEach(function(done) {
             atomicsass = helpers.createGenerator('atomic-sass:app', deps, false, {
                 skipMessages: true
             });
+
+            done();
         });
 
         it('should scaffold the right things', function(done) {
@@ -64,6 +66,19 @@ describe('Atomic SASS', function() {
                 done();
             });
         });
+
+        it('should\'nt complete sassPath with /', function(done) {
+            helpers.mockPrompt(atomicsass, {
+                initial: 'scaffold',
+                sassPath: asUtils.completeSassPath('style/'),
+                createInExistentSassPath: undefined
+            });
+
+            atomicsass.run({}, function() {
+                atomicsass.config.get('sassPath').should.be.exactly('style/');
+                done();
+            });
+        });
     });
 
     describe(':atom', function() {
@@ -71,6 +86,8 @@ describe('Atomic SASS', function() {
             atomicsass = helpers.createGenerator('atomic-sass:atom', deps, false, {
                 skipMessages: true
             });
+
+            done();
         });
     });
 
