@@ -13,8 +13,8 @@ var componentsList = {
         importerFile: '__atoms.scss'
     },
     molecule: {
-        path: '3_atoms/',
-        importerFile: '__atoms.scss'
+        path: '3_molecules/',
+        importerFile: '__molecules.scss'
     },
     organism: {
         path: '4_organisms/',
@@ -24,7 +24,7 @@ var componentsList = {
         path: '5_templates/',
         importerFile: '__templates.scss'
     },
-    pages: {
+    page: {
         path: '6_pages/',
         importerFile: '__pages.scss'
     }
@@ -45,5 +45,8 @@ Components.prototype.linkComponent = function(type, name) {
     var importerContent = this.readFileAsString(importerPath);
     importerContent = importerContent +'@import \'_' + name + '\';\n';
     this.writeFileFromString(importerContent, importerPath);
-    console.log('✓ Your ' + type + ': ' + name + ' was linked to ' + type + ' importer');
+
+    if(!this.options.skipMessages) {
+        this.log('✓ Your ' + type + ': ' + name + ' was linked to ' + type + ' importer');
+    }
 };

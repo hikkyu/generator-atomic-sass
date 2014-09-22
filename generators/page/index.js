@@ -7,6 +7,7 @@ var Components = require('../app/components.js');
 var Page = module.exports = function Page(args, options) {
     try {
         yeoman.generators.NamedBase.apply(this, arguments);
+        this.name = args[0];
     }
     catch(e) {
         console.error('ERROR >>> You need to provide an page name');
@@ -17,10 +18,10 @@ var Page = module.exports = function Page(args, options) {
 
 util.inherits(Page, Components);
 
-Page.prototype.generatePage = function generatePage(name) {
-    if(!_.isEmpty(name) && _.isString(name)) {
-        this.createComponent('page', name);
-        this.linkComponent('page', name);
+Page.prototype.generatePage = function generatePage() {
+    if(!_.isEmpty(this.name) && _.isString(this.name)) {
+        this.createComponent('page', this.name);
+        this.linkComponent('page', this.name);
     }
 };
 

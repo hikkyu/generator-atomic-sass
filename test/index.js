@@ -8,12 +8,7 @@ var asUtils = require('../as-utils/');
 describe('Atomic SASS', function() {
     var atomicsass;
     var deps = [
-        '../../generators/app',
-        '../../generators/quark',
-        '../../generators/atom',
-        '../../generators/molecule',
-        '../../generators/template',
-        '../../generators/page'
+        '../../generators/app'
     ];
 
     var expected = [
@@ -32,11 +27,11 @@ describe('Atomic SASS', function() {
                 done(err);
             }
 
-            done();
-        });
+            atomicsass = helpers.createGenerator('atomic-sass:app', deps, [], {
+                skipMessages: true
+            });
 
-        atomicsass = helpers.createGenerator('atomic-sass:app', deps, false, {
-            skipMessages: true
+            done();
         });
     });
 
@@ -81,40 +76,8 @@ describe('Atomic SASS', function() {
         });
     });
 
-    describe(':quark, :atom, :moelcule, :organism, :template, :page', function() {
-        var subGenTest = function(subGenTyp, targetDirectory) {
-            var name = 'foo';
-            var genTester = helpers.createGenerator('atomic-sass:' + subGenTyp, deps, [name], {
-                skipMessages: true
-            });
-
-            atomicsass.run([], function () {
-                genTester.run([], function () {
-                    helpers.assertFile([
-                        path.join('style/', targetDirectory, '_' + name + '.scss')
-                    ]);
-
-                    /*helpers.assertFileContent([
-                        [
-                            path.join('style/', targetDirectory, '_' + name + '.scss'),
-                            new RegExp(
-                                generatorType + '\\(\'' + scriptNameFn(name) + suffix + '\'',
-                                'g'
-                            )
-                        ],
-                        [
-                            path.join('test/spec', targetDirectory, name + '.js'),
-                            new RegExp(
-                                'describe\\(\'' + _.classify(specType) + ': ' + specNameFn(name) + suffix + '\'',
-                                'g'
-                            )
-                        ]
-                    ]);*/
-                    done();
-                });
-            });
-        };
-
+    describe('Sub Generators', function() {
+        var genTester;
         beforeEach(function(done) {
             helpers.mockPrompt(atomicsass, {
                 initial: 'scaffold',
@@ -122,12 +85,67 @@ describe('Atomic SASS', function() {
                 createInExistentSassPath: undefined
             });
 
-            done();
+            genTester = null;
+            atomicsass.run({}, function() {
+                done();
+            });
+
         });
 
-        it('should create a quark and link to importer', function() {
-            subGenTest('quark', '1_quarks/');
+        var subGenTest = function(subGenTyp, targetDirectory, done) {
+            var name = 'foo';
+
+            var subDeps = [
+                '../../generators/' + subGenTyp
+            ];
+
+            var pathToExpect = path.join('style/', targetDirectory, '_' + name + '.scss');
+            var importerFilePath = path.join('style/', targetDirectory, '__' + subGenTyp + 's.scss');
+
+            genTester = helpers.createGenerator('atomic-sass:' + subGenTyp, subDeps, ['foo'], {
+                skipMessages: true
+            });
+
+            genTester.config.set('sassPath', 'style/');
+
+            genTester.run([], function () {
+                helpers.assertFile(pathToExpect);
+
+                helpers.assertFileContent([
+                    [
+                        importerFilePath,
+                        new RegExp('@import \'_foo\';', 'g')
+                    ]
+                ]);
+
+                done();
+            });
+        };
+
+        it('should create a quark and link to importer', function(done) {
+            subGenTest('quark', '1_quarks/', done);
         });
+
+        it('should create an atom and link to importer', function(done) {
+            subGenTest('atom', '2_atoms/', done);
+        });
+
+        it('should create a molecule and link to importer', function(done) {
+            subGenTest('molecule', '3_molecules/', done);
+        });
+
+        it('should create a organism and link to importer', function(done) {
+            subGenTest('organism', '4_organisms/', done);
+        });
+
+        it('should create a template and link to importer', function(done) {
+            subGenTest('template', '5_templates/', done);
+        });
+
+        it('should create a page and link to importer', function(done) {
+            subGenTest('page', '6_pages/', done);
+        });
+
     });
 
 });

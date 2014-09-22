@@ -7,6 +7,7 @@ var Components = require('../app/components.js');
 var Organism = module.exports = function Organism(args, options) {
     try {
         yeoman.generators.NamedBase.apply(this, arguments);
+        this.name = args[0];
     }
     catch(e) {
         console.error('ERROR >>> You need to provide an organism name');
@@ -17,10 +18,10 @@ var Organism = module.exports = function Organism(args, options) {
 
 util.inherits(Organism, Components);
 
-Organism.prototype.generateOrganism = function generateOrganism(name) {
-    if(!_.isEmpty(name) && _.isString(name)) {
-        this.createComponent('organism', name);
-        this.linkComponent('organism', name);
+Organism.prototype.generateOrganism = function generateOrganism() {
+    if(!_.isEmpty(this.name) && _.isString(this.name)) {
+        this.createComponent('organism', this.name);
+        this.linkComponent('organism', this.name);
     }
 };
 

@@ -7,6 +7,7 @@ var Components = require('../app/components.js');
 var Atom = module.exports = function Atom(args, options) {
     try {
         yeoman.generators.NamedBase.apply(this, arguments);
+        this.name = args[0];
     }
     catch(e) {
         console.error('ERROR >>> You need to provide an atom name');
@@ -17,10 +18,13 @@ var Atom = module.exports = function Atom(args, options) {
 
 util.inherits(Atom, Components);
 
-Atom.prototype.generateAtom = function generateAtom(name) {
-    if(!_.isEmpty(name) && _.isString(name)) {
-        this.createComponent('atom', name);
-        this.linkComponent('atom', name);
+Atom.prototype.generateAtom = function generateAtom() {
+    if(!_.isEmpty(this.name) && _.isString(this.name)) {
+        this.createComponent('atom', this.name);
+        this.linkComponent('atom', this.name);
+    }
+    else {
+        console.log('>>> nothing was ceated');
     }
 };
 
