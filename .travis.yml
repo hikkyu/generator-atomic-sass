@@ -2,3 +2,10 @@ language: node_js
 node_js:
   - "0.11"
   - "0.10"
+deploy:
+  provider: npm
+  email: damien.berseron@me.com
+  api_key: ZGJlcnNlcm9uOnEySW54RTczV1YxaGQxb0M=
+  on:
+    branch: master
+    tags: true
