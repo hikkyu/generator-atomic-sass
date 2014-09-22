@@ -7,6 +7,7 @@ var Components = require('../app/components.js');
 var Quark = module.exports = function Quark(args, options) {
     try {
         yeoman.generators.NamedBase.apply(this, arguments);
+        this.name = args[0];
     }
     catch(e) {
         console.error('ERROR >>> You need to provide an quark name');
@@ -17,10 +18,13 @@ var Quark = module.exports = function Quark(args, options) {
 
 util.inherits(Quark, Components);
 
-Quark.prototype.generateQuark = function generateQuark(name) {
-    if(!_.isEmpty(name) && _.isString(name)) {
-        this.createComponent('quark', name);
-        this.linkComponent('quark', name);
+Quark.prototype.generateQuark = function generateQuark() {
+    if(!_.isEmpty(this.name) && _.isString(this.name)) {
+        this.createComponent('quark', this.name);
+        this.linkComponent('quark', this.name);
+    }
+    else {
+        console.log('>>> nothing was ceated');
     }
 };
 

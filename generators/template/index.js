@@ -7,6 +7,7 @@ var Components = require('../app/components.js');
 var Template = module.exports = function Template(args, options) {
     try {
         yeoman.generators.NamedBase.apply(this, arguments);
+        this.name = args[0];
     }
     catch(e) {
         console.error('ERROR >>> You need to provide an template name');
@@ -17,10 +18,10 @@ var Template = module.exports = function Template(args, options) {
 
 util.inherits(Template, Components);
 
-Template.prototype.generateTemplate = function generateTemplate(name) {
-    if(!_.isEmpty(name) && _.isString(name)) {
-        this.createComponent('template', name);
-        this.linkComponent('template', name);
+Template.prototype.generateTemplate = function generateTemplate() {
+    if(!_.isEmpty(this.name) && _.isString(this.name)) {
+        this.createComponent('template', this.name);
+        this.linkComponent('template', this.name);
     }
 };
 

@@ -7,6 +7,7 @@ var Components = require('../app/components.js');
 var Molecule = module.exports = function Molecule(args, options) {
     try {
         yeoman.generators.NamedBase.apply(this, arguments);
+        this.name = args[0];
     }
     catch(e) {
         console.error('ERROR >>> You need to provide an molecule name');
@@ -17,10 +18,10 @@ var Molecule = module.exports = function Molecule(args, options) {
 
 util.inherits(Molecule, Components);
 
-Molecule.prototype.generateMolecule = function generateMolecule(name) {
-    if(!_.isEmpty(name) && _.isString(name)) {
-        this.createComponent('molecule', name);
-        this.linkComponent('molecule', name);
+Molecule.prototype.generateMolecule = function generateMolecule() {
+    if(!_.isEmpty(this.name) && _.isString(this.name)) {
+        this.createComponent('molecule', this.name);
+        this.linkComponent('molecule', this.name);
     }
 };
 
