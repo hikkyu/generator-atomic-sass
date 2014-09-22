@@ -1,29 +1,30 @@
 {
-    "name": "generator-atomic-sass",
-    "version": "0.1.0",
-    "description": "Yeoman generator for atomic sass structure",
-    "main": "index.js",
-    "keywords": [
-        "yeoman-generator",
-        "atom",
-        "molecule",
-        "organism",
-        "scss",
-        "sass",
-        "css"
-    ],
-    "scripts": {
-        "test": "mocha test"
-    },
-    "author": "Hikkyu",
-    "license": "ISC",
-    "dependencies": {
-        "lodash": "^2.4.1",
-        "yeoman-generator": "^0.17.6"
-    },
-    "devDependencies": {
-        "gulp": "^3.8.8",
-        "gulp-mocha": "^1.1.0",
-        "should": "^4.0.4"
-    }
+  "name": "generator-atomic-sass",
+  "version": "0.1.0",
+  "description": "Yeoman generator for atomic sass structure",
+  "main": "index.js",
+  "keywords": [
+    "yeoman-generator",
+    "atom",
+    "molecule",
+    "organism",
+    "scss",
+    "sass",
+    "css"
+  ],
+  "scripts": {
+    "test": "mocha test"
+  },
+  "author": "Hikkyu",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^2.4.1",
+    "yeoman-generator": "^0.17.6"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.8",
+    "gulp-mocha": "^1.1.0",
+    "mocha": "^1.21.4",
+    "should": "^4.0.4"
+  }
 }
