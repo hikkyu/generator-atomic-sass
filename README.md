@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/hikkyu/generator-atomic-sass.svg?branch=master)](https://travis-ci.org/hikkyu/generator-atomic-sass)
+
 # Generator Atomic SASS
 
     npm install -g generator-atomic-sass
