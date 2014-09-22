@@ -9,7 +9,11 @@ describe('Atomic SASS', function() {
     var atomicsass;
     var deps = [
         '../../generators/app',
-        '../../generators/atom'
+        '../../generators/quark',
+        '../../generators/atom',
+        '../../generators/molecule',
+        '../../generators/template',
+        '../../generators/page'
     ];
 
     var expected = [
@@ -30,17 +34,13 @@ describe('Atomic SASS', function() {
 
             done();
         });
+
+        atomicsass = helpers.createGenerator('atomic-sass:app', deps, false, {
+            skipMessages: true
+        });
     });
 
     describe(':app', function() {
-        beforeEach(function(done) {
-            atomicsass = helpers.createGenerator('atomic-sass:app', deps, false, {
-                skipMessages: true
-            });
-
-            done();
-        });
-
         it('should scaffold the right things', function(done) {
             helpers.mockPrompt(atomicsass, {
                 initial: 'scaffold',
@@ -81,13 +81,52 @@ describe('Atomic SASS', function() {
         });
     });
 
-    describe(':atom', function() {
-        beforeEach(function(done) {
-            atomicsass = helpers.createGenerator('atomic-sass:atom', deps, false, {
+    describe(':quark, :atom, :moelcule, :organism, :template, :page', function() {
+        var subGenTest = function(subGenTyp, targetDirectory) {
+            var name = 'foo';
+            var genTester = helpers.createGenerator('atomic-sass:' + subGenTyp, deps, [name], {
                 skipMessages: true
             });
 
+            atomicsass.run([], function () {
+                genTester.run([], function () {
+                    helpers.assertFile([
+                        path.join('style/', targetDirectory, '_' + name + '.scss')
+                    ]);
+
+                    /*helpers.assertFileContent([
+                        [
+                            path.join('style/', targetDirectory, '_' + name + '.scss'),
+                            new RegExp(
+                                generatorType + '\\(\'' + scriptNameFn(name) + suffix + '\'',
+                                'g'
+                            )
+                        ],
+                        [
+                            path.join('test/spec', targetDirectory, name + '.js'),
+                            new RegExp(
+                                'describe\\(\'' + _.classify(specType) + ': ' + specNameFn(name) + suffix + '\'',
+                                'g'
+                            )
+                        ]
+                    ]);*/
+                    done();
+                });
+            });
+        };
+
+        beforeEach(function(done) {
+            helpers.mockPrompt(atomicsass, {
+                initial: 'scaffold',
+                sassPath: 'style/',
+                createInExistentSassPath: undefined
+            });
+
             done();
+        });
+
+        it('should create a quark and link to importer', function() {
+            subGenTest('quark', '1_quarks/');
         });
     });
 
