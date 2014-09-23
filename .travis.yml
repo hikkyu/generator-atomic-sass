@@ -9,4 +9,3 @@ deploy:
     secure: "Pc9sD/q1rSAEuhXnPXElPnIVOhziVQu9QGNG9G6hoQeAFTxtGY9QebTaiXej0s+am3Z3FjhzNBbbwP+aV8SD0eJL0eQO3cOmfzOtLGt9qGIHTRSeDo7Ys3D/JOceXOjCmFmJJrVCIbGxry/oeTal75uQeslONrRJt9ke8pw9NKM="
   on:
     branch: master
-    tags: true
