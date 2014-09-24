@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-var handleInput = require('../lib/handleInput');
-var logger = require('../lib/logger');
+var handleInput = require('../node_modules/coveralls/lib/handleInput');
+var logger = require('../node_modules/coveralls/lib/logger');
 
 
 process.stdin.resume();
