@@ -1,5 +1,6 @@
 [![Build Status](https://img.shields.io/travis/hikkyu/generator-atomic-sass/master.svg?style=flat)](https://travis-ci.org/hikkyu/generator-atomic-sass)
 [![Dependency Status](https://img.shields.io/david/hikkyu/generator-atomic-sass.svg?style=flat)](https://david-dm.org/hikkyu/generator-atomic-sass)
+[![Coverage Status](https://img.shields.io/coveralls/hikkyu/generator-atomic-sass/master.svg?style=flat)](https://coveralls.io/r/hikkyu/generator-atomic-sass?branch=master)
 
 # Generator Atomic SASS
 
