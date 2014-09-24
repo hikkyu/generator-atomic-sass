@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/hikkyu/generator-atomic-sass.svg?branch=master)](https://travis-ci.org/hikkyu/generator-atomic-sass)
+[![Build Status](https://img.shields.io/travis/hikkyu/generator-atomic-sass/master.svg?style=flat)](https://travis-ci.org/hikkyu/generator-atomic-sass)
+[![Dependency Status](https://img.shields.io/david/hikkyu/generator-atomic-sass.svg?style=flat)](https://david-dm.org/hikkyu/generator-atomic-sass)
 
 # Generator Atomic SASS
 
@@ -23,4 +24,3 @@
 
 ## Generate a new page
     yo atomic-sass:page <name>
-
