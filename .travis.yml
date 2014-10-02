@@ -9,3 +9,4 @@ deploy:
     secure: eaycie+lEyfx084GfaocCqtDLQqrNJFFbJEik/kIXzvnwigwMIJgoiosTUWvomnhPXHJRgFDmYLaI1Wc0YJN+cGDmqls0BZaGrwXArj03d0d7xMuhkvygj6Pbui9oBFr8CI3jn3owXIemhB9PnKUB2OLotp1dD1zMD++fYcYELg=
   on:
     branch: master
+    tags: true
