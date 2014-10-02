@@ -49,8 +49,7 @@ gulp.task('git-commit-bump', function(){
 });
 
 gulp.task('git-push-tag', function(){
-    return gulp.src('./*')
-        .pipe(git.push({args: '--tags'}));
+    git.push('origin', '', {args: '--tags'});
 });
 
 gulp.task('git-release', ['git-commit-bump', 'git-tag', 'git-push-tag']);
