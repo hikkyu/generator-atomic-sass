@@ -38,7 +38,7 @@ gulp.task('bump-major', function() {
  * Git gestion
  */
 gulp.task('git-tag', function() {
-    git.tag('v'+pkg.version, 'Version message', function (err) {
+    return git.tag('v'+pkg.version, 'Version message', function (err) {
         if (err) throw err;
     });
 });
@@ -49,7 +49,7 @@ gulp.task('git-commit-bump', function(){
 });
 
 gulp.task('git-push-tag', function(){
-    git.push('origin', '', {args: '--tags'});
+    return git.push('origin', '', {args: '--tags'});
 });
 
 gulp.task('git-release', ['git-commit-bump', 'git-tag', 'git-push-tag']);
