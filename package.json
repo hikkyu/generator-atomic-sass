@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "description": "Yeoman generator for atomic sass structure",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hikkyu/generator-atomic-sass.git"
+  },
   "keywords": [
     "yeoman-generator",
     "atom",
@@ -18,16 +22,18 @@
   "author": "Hikkyu",
   "license": "ISC",
   "dependencies": {
-    "coveralls": "^2.11.2",
     "lodash": "^2.4.1",
-    "mocha-lcov-reporter": "0.0.1",
     "yeoman-generator": "^0.17.6"
   },
   "devDependencies": {
+    "coveralls": "^2.11.2",
     "gulp": "^3.8.8",
+    "gulp-bump": "^0.1.11",
+    "gulp-git": "^0.5.1",
     "gulp-mocha": "^1.1.0",
     "istanbul": "^0.3.2",
     "mocha": "^1.21.4",
+    "mocha-lcov-reporter": "0.0.1",
     "should": "^4.0.4"
   }
 }
